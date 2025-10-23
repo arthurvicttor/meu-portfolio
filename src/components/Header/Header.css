@@ -1,0 +1,92 @@
+.header {
+  color: #8f9db2;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: transparent;
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+  padding: 1rem 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.header .container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.logo h1 {
+  color: #006eff;
+  margin: 0;
+}
+
+.nav {
+  display: flex;
+  gap: 2rem;
+}
+
+.nav a {
+  position: relative; /* garante que a linha fique relativa ao link */
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+  padding-bottom: 4px; /* espaço pra linha não colar no texto */
+  transition: color 0.3s ease;
+}
+
+.nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0; /* a linha vai colada na base do link */
+  width: 0%;
+  height: 2px;
+  background-color: #006eff;
+  transition: width 0.3s ease;
+}
+
+.nav a:hover::after {
+  width: 100%; /* a linha aparece ao passar o mouse */
+}
+
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+    color: white;
+  }
+
+  .nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(
+      90deg,
+      rgba(2, 8, 23, 1) 0%,
+      rgba(14, 50, 99, 1) 50%,
+      rgba(23, 56, 133, 1) 100%
+    );
+    flex-direction: column;
+    padding: 1rem;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    transform: translateY(-100%);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .nav.nav-open {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+  }
+}
